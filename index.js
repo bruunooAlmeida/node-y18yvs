@@ -43,8 +43,7 @@ let posLetra = {
   posDel: [],
   posInicial: [],
 };
-
-function parole(tabuleiro, palavra) {
+function verificaPalavra(tabuleiro, palavra) {
   indexLetra = 1;
   let cont = 0;
   do {
@@ -140,15 +139,17 @@ function parole(tabuleiro, palavra) {
       }
     }
   }
+  if (palavra.length == 1 && posLetra.posInicial.length == 1) return true;
 
   if (posLetra.posInicial.length == 0) return false;
 
   if (posLetra.posInicial.length == 1)
     return verificaPalavra(tabuleiro, palavra);
   else {
-    posLetra.letra = [];
     for (let index = 0; index < posLetra.posInicial.length; index++) {
       const element = posLetra.posInicial[index];
+      posLetra.letra = [];
+      posLetra.posDel = [];
       // console.log(element);
       posLetra.letra.push(element);
       let retorno = verificaPalavra(tabuleiro, palavra);
